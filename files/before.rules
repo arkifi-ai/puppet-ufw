@@ -1,4 +1,11 @@
 # THIS FILE IS MANAGED BY PUPPET. ALL CHANGES WILL BE DISCARDED.
+
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -s 10.240.1.0/24 -o enp2s0 -j MASQUERADE
+COMMIT
+
 #
 # rules.before
 #
@@ -73,4 +80,5 @@
 -A ufw-before-input -p udp -d 239.255.255.250 --dport 1900 -j ACCEPT
 
 # don't delete the 'COMMIT' line or these rules won't be processed
+COMMIT
 COMMIT
