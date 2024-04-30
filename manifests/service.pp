@@ -46,11 +46,11 @@ class ufw::service(
     # Jamie: Hoping a service restart will cover this
 
     #TODO investigate the reasons behind https://github.com/attachmentgenie/attachmentgenie-ufw/blob/master/manifests/service.pp#L17-L22
-    #-> exec { "ufw --force ${action}":
-    #  path        => '/usr/sbin:/bin',
-    #  environment => ['DEBIAN_FRONTEND=noninteractive'],
-    #  unless      => "ufw status | grep 'Status: ${unless_status}'",
-    #}
+    -> exec { "ufw --force ${action}":
+      path        => '/usr/sbin:/bin',
+      environment => ['DEBIAN_FRONTEND=noninteractive'],
+      unless      => "ufw status | grep 'Status: ${unless_status}'",
+    }
     # Jamie: That link points to a special exception about Debian Squeeze (6, circa 2014). This is 2024, and I don't think that's important.
   }
 }
