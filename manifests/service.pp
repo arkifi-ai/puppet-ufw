@@ -18,7 +18,6 @@ class ufw::service(
   Stdlib::Ensure::Service    $service_ensure = $ufw::service_ensure,
   String[1]                  $service_name   = $ufw::service_name,
 ) {
-  notice("ufw::service manage=$manage_service ensure=$service_ensure name=$service_name")
   if $manage_service {
     if $service_ensure == 'stopped' {
       $action = 'disable'
